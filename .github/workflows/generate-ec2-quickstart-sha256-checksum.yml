@@ -1,0 +1,34 @@
+name: Generate SHA256 Checksum
+
+on:
+  pull_request:
+    paths:
+      - 'AWS/EC2/ec2-install.sh'  # Trigger only when the install.sh file in the AWS/EC2 directory is changed
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  generate-checksum:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Generate SHA256 checksum for install.sh in AWS/EC2 directory
+      run: |
+        # Generate SHA256 checksum for the install.sh script located in AWS/EC2
+        sha256sum AWS/EC2/ec2-install.sh > AWS/EC2/ec2-install.sh.sha256
+
+    - name: Commit SHA256 file to AWS/EC2 directory
+      run: |
+        # Set up Git config
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+
+        # Add the generated checksum file in the AWS/EC2 directory
+        git add AWS/EC2/ec2-install.sh.sha256
+        git commit -m "Add SHA256 checksum for ec2-install.sh in AWS/EC2 directory"
+        git push
