@@ -27,8 +27,9 @@ The primary goal of these scripts is to get a Develocity instance up and running
 
 Before using these scripts, you will need:
 
-* An active **AWS account**.
-* Basic familiarity with AWS EC2.
+* A Develocity license
+* An active **AWS account**
+* Basic familiarity with AWS EC2
 
 ## Important Considerations
 
