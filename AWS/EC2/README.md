@@ -6,8 +6,4 @@
 
 ## Getting Started
 
-HERE THE LINK TO THE DOC
-
-```shell
-ec2-install.sh --license $PATH/TO/LICENSE --hostname $AWS-HOSTNAME
-```
+Follow the [EC2 Quickstart Guide](https://docs.gradle.com/develocity/helm-standalone-installation/current/) to get started.
