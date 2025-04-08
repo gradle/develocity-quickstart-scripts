@@ -16,9 +16,9 @@ set -e
 trap cleanup SIGINT SIGTERM ERR EXIT
 
 # --- Variables ---
-INSTALL_K3S_VERSION=${INSTALL_K3S_VERSION:-"v1.32.2+k3s1"}
+INSTALL_K3S_VERSION=${INSTALL_K3S_VERSION:-"v1.32.3+k3s1"}
 DV_CHART_REGISTRY_URL=${DV_CHART_REGISTRY_URL:-"https://helm.gradle.com/"}
-DV_VERSION=${DV_VERSION:-"2024.3.3"}
+DV_VERSION=${DV_VERSION:-"2025.1"}
 Script_Version="0.1"
 
 # Log File
