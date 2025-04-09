@@ -340,7 +340,7 @@ checkInstallState() {
   sleep 10
 
   # Get all pods in the namespace
-  PODS=$(kubectl get pods -n "$NAMESPACE" -o jsonpath='{.items[*].metadata.name}')
+  PODS=$(kubectl get pods -n "$NAMESPACE" --selector '!batch.kubernetes.io/job-name' -o jsonpath='{.items[*].metadata.name}')
 
   # Total number of pods
   TOTAL_PODS=$(echo "$PODS" | wc -w)
