@@ -16,7 +16,6 @@ set -e
 trap cleanup SIGINT SIGTERM ERR EXIT
 
 # --- Variables ---
-INSTALL_K3S_VERSION=${INSTALL_K3S_VERSION:-"v1.32.3+k3s1"}
 DV_CHART_REGISTRY_URL=${DV_CHART_REGISTRY_URL:-"https://helm.gradle.com/"}
 SCRIPT_VERSION="0.1"
 
@@ -212,7 +211,6 @@ installK3s(){
   checkUrl "${baseUrl}"
 
   logInfo "Installing K3s..."
-   export INSTALL_K3S_VERSION="${INSTALL_K3S_VERSION}"
    curl -s -fL ${baseUrl} | sh - || exitError "Failed to install k3s"
 }
 
