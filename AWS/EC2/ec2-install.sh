@@ -16,10 +16,8 @@ set -e
 trap cleanup SIGINT SIGTERM ERR EXIT
 
 # --- Variables ---
-INSTALL_K3S_VERSION=${INSTALL_K3S_VERSION:-"v1.32.3+k3s1"}
 DV_CHART_REGISTRY_URL=${DV_CHART_REGISTRY_URL:-"https://helm.gradle.com/"}
-DV_VERSION=${DV_VERSION:-"2025.1.0"}
-Script_Version="0.1"
+SCRIPT_VERSION="0.1"
 
 # Log File
 LOGFILE="$(pwd)/install_$(date +'%Y%m%d_%H%M%S').log"
@@ -107,23 +105,6 @@ echo -e "${YELLOW}-u, --uninstall${NOFORMAT}     Uninstall Develocity Platform"
 
 exit
 }
-
-# --- Validation functions ---
-# Check if the script is running as root
-# This is not used at the moment.
-#validateSudo () {
-#    local OS_TYPE=$(uname)
-#    if [ "$OS_TYPE" == "Linux" ] && [ $EUID -ne 0 ]; then
-#      exitError "This script must be run as root or with sudo."
-#    elif [ "$OS_TYPE" != "Linux" ]; then
-#      exitError "This script is only supported on Linux."
-#    fi
-
-#    local ARCHITECTURE=$(uname -m)
-#    if [ "$ARCHITECTURE" != "x86_64" ]; then
-#      exitError "This script is only supported on x86_64 architecture."
-#    fi
-#}
 
 # Check if the OS is Linux and x86_64
 validateOS () {
@@ -230,7 +211,6 @@ installK3s(){
   checkUrl "${baseUrl}"
 
   logInfo "Installing K3s..."
-   export INSTALL_K3S_VERSION="${INSTALL_K3S_VERSION}"
    curl -s -fL ${baseUrl} | sh - || exitError "Failed to install k3s"
 }
 
@@ -270,7 +250,6 @@ installPlatformChart(){
     helm repo add gradle "${baseUrl}" && \
     helm repo update && \
     helm install \
-    --version "${DV_VERSION}" \
     --create-namespace --namespace develocity \
     ge-standalone \
     gradle/gradle-enterprise-standalone \
