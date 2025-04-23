@@ -7,7 +7,8 @@
 This repository contains quickstart scripts to help you effortlessly install and run [Develocity](https://gradle.com/develocity/) in a non-production environment.
 These scripts are designed for users who want to quickly try out Develocity and its features.
 
-**Please Note:** The setup provided by these scripts is opinionated and **NOT intended or suitable for production use.**
+> [!NOTE]
+> The setup provided by these scripts is opinionated and **NOT intended or suitable for production use.**
 
 ## Purpose
 
