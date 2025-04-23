@@ -7,7 +7,8 @@
 This repository contains quickstart scripts to help you effortlessly install and run [Develocity](https://gradle.com/develocity/) in a non-production environment.
 These scripts are designed for users who want to quickly try out Develocity and its features.
 
-**Please Note:** The setup provided by these scripts is opinionated and **NOT intended or suitable for production use.**
+> [!NOTE]
+> The setup provided by these scripts is opinionated and **NOT intended or suitable for production use.**
 
 ## Purpose
 
@@ -36,6 +37,10 @@ Before using these scripts, you will need:
 * **Non-Production Environment:** This setup is solely for evaluation and testing purposes. Don't use it for production deployments.
 * **Opinionated Setup:** The scripts make certain assumptions about the deployment environment. These might not align with all use cases.
 * **Security:** The security configurations in this quickstart are basic and not hardened for production.
+
+## Available Guides
+
+* [Try Out Develocity on Amazon EC2](https://docs.gradle.com/develocity/aws-ec2-quickstart-guide/)
 
 ## Documentation and Support
 
