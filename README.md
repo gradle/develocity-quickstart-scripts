@@ -37,6 +37,10 @@ Before using these scripts, you will need:
 * **Opinionated Setup:** The scripts make certain assumptions about the deployment environment. These might not align with all use cases.
 * **Security:** The security configurations in this quickstart are basic and not hardened for production.
 
+## Available Guides
+
+* [Try Out Develocity on Amazon EC2](https://docs.gradle.com/develocity/aws-ec2-quickstart-guide/)
+
 ## Documentation and Support
 
 For comprehensive information about Develocity features, configuration, and best practices, please refer to the official documentation:
