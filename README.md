@@ -46,9 +46,9 @@ Before using these scripts, you will need:
 
 For comprehensive information about Develocity features, configuration, and best practices, please refer to the official documentation:
 
-* **Official Develocity Website:** [https://gradle.com/develocity/](https://gradle.com/develocity/)
-* **Develocity Documentation:** [https://gradle.com/develocity/resources/](https://gradle.com/develocity/resources/)
-* **DPE University:** [https://dpeuniversity.gradle.com/app](https://dpeuniversity.gradle.com/app)
+* [Official Develocity Website](https://gradle.com/develocity/)
+* [Develocity Documentation](https://gradle.com/develocity/resources/)
+* [DPE University](https://dpeuniversity.gradle.com/app)
 
 ## License
 
