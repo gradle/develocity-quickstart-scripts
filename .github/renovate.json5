@@ -1,0 +1,25 @@
+{
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
+  ],
+  customManagers: [
+    {
+      customType: 'regex',
+      description: 'Update _VERSION for 3rd parties gradle plugin',
+      datasourceTemplate: "maven",
+      versioningTemplate: "gradle",
+      depType: "plugin",
+      registryUrlTemplate: "https://plugins.gradle.org/m2/",
+      fileMatch: [ 'ec2-install.sh' ],
+      matchStrings: [
+        '# renovate: depName=(?<depName>[^\\s]+) packageName=(?<packageName>[^\\s]+).*\\s*[A-Z_]*VERSION=(?<currentValue>[\\w+\\.\\-]*)\\s*',
+      ],
+    },
+  ],
+  postUpgradeTasks: {
+    commands: [  ],
+    fileFilters: [ '**', ],
+    executionMode: 'branch',
+  },
+}
