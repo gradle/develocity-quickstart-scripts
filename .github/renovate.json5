@@ -18,8 +18,8 @@
     },
   ],
   postUpgradeTasks: {
-    commands: [  ],
-    fileFilters: [ '**', ],
+    commands: ['bash .github/renovate/create_ec2_install_checksum.sh'],
+    fileFilters: [ 'AWS/EC2/ec2-install.sh', ],
     executionMode: 'branch',
   },
 }
