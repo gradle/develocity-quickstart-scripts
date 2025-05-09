@@ -386,11 +386,15 @@ createBuildFile() {
   EOL=$'\n'  # Define End Of Line
 
   # Content of the settings.gradle.kts file
-    SETTINGS_CONTENT="
+  # renovate: depName=com.gradle.develocity packageName=com.gradle.develocity:com.gradle.develocity.gradle.plugin
+  DEVELOCITY_PLUGIN_VERSION=4.0
+  # renovate: depName=org.gradle.toolchains.foojay-resolver-convention packageName=org.gradle.toolchains.foojay-resolver-convention:org.gradle.toolchains.foojay-resolver-convention.gradle.plugin
+  FOOJAY_RESOLVER_VERSION=0.10.0
+  SETTINGS_CONTENT="
 plugins {
     // Develocity Gradle Plugin
-    id(\"com.gradle.develocity\") version \"4.0\"
-    id(\"org.gradle.toolchains.foojay-resolver-convention\") version \"0.10.0\"
+    id(\"com.gradle.develocity\") version \"$DEVELOCITY_PLUGIN_VERSION\"
+    id(\"org.gradle.toolchains.foojay-resolver-convention\") version \"$FOOJAY_RESOLVER_VERSION\"
 }$EOL
 develocity {
     // The hostname of the Develocity instance
