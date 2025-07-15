@@ -24,7 +24,7 @@
       'bash .github/renovate/post-upgrade.sh',
     ],
     fileFilters: [
-      'AWS/EC2/ec2-install.sh',
+      '**',
     ],
     executionMode: 'branch',
   },
