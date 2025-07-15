@@ -7,19 +7,25 @@
     {
       customType: 'regex',
       description: 'Update _VERSION for 3rd parties gradle plugin',
-      datasourceTemplate: "maven",
-      versioningTemplate: "gradle",
-      packageNameTemplate: "{{packageName}}",
-      registryUrlTemplate: "https://plugins.gradle.org/m2/",
-      fileMatch: [ 'ec2-install.sh' ],
+      datasourceTemplate: 'maven',
+      versioningTemplate: 'gradle',
+      packageNameTemplate: '{{packageName}}',
+      registryUrlTemplate: 'https://plugins.gradle.org/m2/',
+      managerFilePatterns: [
+        '/ec2-install.sh/',
+      ],
       matchStrings: [
         '# renovate: depName=(?<depName>[^\\s]+) packageName=(?<packageName>[^\\s]+).*\\s*[A-Z_]*VERSION=(?<currentValue>[\\w+\\.\\-]*)\\s*',
       ],
     },
   ],
   postUpgradeTasks: {
-    commands: ['bash .github/renovate/post-upgrade.sh'],
-    fileFilters: [ 'AWS/EC2/ec2-install.sh', ],
+    commands: [
+      'bash .github/renovate/post-upgrade.sh',
+    ],
+    fileFilters: [
+      'AWS/EC2/ec2-install.sh',
+    ],
     executionMode: 'branch',
   },
 }
