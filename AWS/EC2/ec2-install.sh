@@ -387,7 +387,7 @@ createBuildFile() {
 
   # Content of the settings.gradle.kts file
   # renovate: depName=com.gradle.develocity packageName=com.gradle.develocity:com.gradle.develocity.gradle.plugin
-  DEVELOCITY_PLUGIN_VERSION=4.0
+  DEVELOCITY_PLUGIN_VERSION=4.1
   # renovate: depName=org.gradle.toolchains.foojay-resolver-convention packageName=org.gradle.toolchains.foojay-resolver-convention:org.gradle.toolchains.foojay-resolver-convention.gradle.plugin
   FOOJAY_RESOLVER_VERSION=1.0.0
   SETTINGS_CONTENT="
