@@ -40,14 +40,14 @@ Before using these scripts, you will need:
 
 ## Available Guides
 
-* [Try Out Develocity on Amazon EC2](https://docs.gradle.com/develocity/aws-ec2-quickstart-guide/)
+* [Try Out Develocity on Amazon EC2](https://docs.gradle.com/current/develocity/quickstart/aws-ec2-quickstart-guide/)
 
 ## Documentation and Support
 
 For comprehensive information about Develocity features, configuration, and best practices, please refer to the official documentation:
 
 * [Official Develocity Website](https://gradle.com/develocity/)
-* [Develocity Documentation](https://gradle.com/develocity/resources/)
+* [Develocity Documentation](https://docs.gradle.com/develocity)
 * [DPE University](https://dpeuniversity.gradle.com/app)
 
 ## License
