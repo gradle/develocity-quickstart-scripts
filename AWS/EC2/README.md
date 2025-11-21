@@ -12,4 +12,4 @@ The primary goal of this guide is to get a Develocity instance up and running qu
 
 ## Getting Started
 
-Follow the [EC2 Quickstart Guide](https://docs.gradle.com/develocity/aws-ec2-quickstart-guide/) to get started.
+Follow the [EC2 Quickstart Guide](https://docs.gradle.com/current/develocity/quickstart/aws-ec2-quickstart-guide/) to get started.
