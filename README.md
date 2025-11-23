@@ -40,7 +40,7 @@ Before using these scripts, you will need:
 
 ## Available Guides
 
-* [Try Out Develocity on Amazon EC2](https://docs.gradle.com/current/develocity/quickstart/aws-ec2-quickstart-guide/)
+* [Try Out Develocity on Amazon EC2](https://docs.gradle.com/develocity/current/quickstart/aws-ec2-quickstart-guide/)
 
 ## Documentation and Support
 
