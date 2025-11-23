@@ -94,7 +94,7 @@ echo -e "\nThe script is tested with Ubuntu 24.04 x86_64 (AMI)."
 
 echo -e "If you have questions please contact the Develocity support team."
 
-echo -e "\nDevelocity Documentation: https://gradle.com/develocity/resources/"
+echo -e "\nDevelocity Documentation: docs.gradle.com/develocity"
 
 echo -e "\n${WHITE}${BOLD}Available options:${NOFORMAT}"
 echo -e "${YELLOW}-h, --help${NOFORMAT}          Print this help and exit"
@@ -438,8 +438,8 @@ Access Develocity via the browser at: ${GREEN}http://${hostname}${NOFORMAT}
 
       For more information, please visit:
 
-      Develocity Administration Manual: https://docs.gradle.com/develocity/helm-admin/current/
-      Helm Chart Documentation: https://docs.gradle.com/develocity/tutorials/helm-standalone/current/
+      Develocity Administration Manual: https://gradle.com/help/helm-admin
+      Helm Chart Documentation: https://gradle.com/help/helm-standalone-chart
 
       You can check the status of the Platform by running the following command:
 
