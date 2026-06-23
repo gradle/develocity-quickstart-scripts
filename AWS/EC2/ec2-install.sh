@@ -90,7 +90,7 @@ echo -e "\n${WHITE}${BOLD}Example: ./install.sh -l develocity.license -hn develo
 echo -e "\nThe script sets up a lightweight Kubernetes (K3s) environment in which Develocity is deployed using Helm."
 echo -e "The license (-l, --license) and hostname (-hn, --hostname) flags are always required."
 
-echo -e "\nThe script is tested with Ubuntu 24.04 x86_64 (AMI)."
+echo -e "\nThe script is tested with Ubuntu 26.04 x86_64 (AMI)."
 
 echo -e "If you have questions please contact the Develocity support team."
 
