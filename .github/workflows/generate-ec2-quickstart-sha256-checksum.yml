@@ -3,7 +3,7 @@ name: Generate SHA256 Checksum
 on:
   pull_request:
     paths:
-      - 'AWS/EC2/ec2-install.sh'  # Trigger only when the install script in AWS/EC2 is changed
+      - 'AWS/EC2'
     types:
       - opened
       - synchronize
