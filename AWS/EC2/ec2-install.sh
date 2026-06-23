@@ -85,12 +85,12 @@ usage() {
 echo -e "${WHITE}${BOLD}Develocity Installation Script${NOFORMAT}"
 echo -e "\nUsage: $(basename "${BASH_SOURCE[0]}") [-h][-v][-l][-hn] [-u]"
 
-echo -e "\n${WHITE}${BOLD}Example: ./install.sh -l develocity.license -hn develocity.example.io${NOFORMAT}"
+echo -e "\n${WHITE}${BOLD}Example: ./ec2-install.sh -l develocity.license -hn develocity.example.io${NOFORMAT}"
 
 echo -e "\nThe script sets up a lightweight Kubernetes (K3s) environment in which Develocity is deployed using Helm."
 echo -e "The license (-l, --license) and hostname (-hn, --hostname) flags are always required."
 
-echo -e "\nThe script is tested with Ubuntu 24.04 x86_64 (AMI)."
+echo -e "\nThe script is tested with Ubuntu 26.04 x86_64 (AMI)."
 
 echo -e "If you have questions please contact the Develocity support team."
 
@@ -254,7 +254,7 @@ installPlatformChart(){
     ge-standalone \
     gradle/gradle-enterprise-standalone \
     --set global.hostname="${hostname}" \
-    --set-file global.license.file=./"${license}" \
+    --set-file global.license.file="${license}" \
     || exitError "Failed to install the Develocity Helm chart"
 }
 
@@ -447,7 +447,7 @@ Access Develocity via the browser at: ${GREEN}http://${hostname}${NOFORMAT}
 
       If you have any questions or need any assistance contact the Develocity support team or your customer success representative.
 
-      The installation script created a pre-configured setting.gradle.kts file for you.
+      The installation script created a pre-configured settings.gradle.kts file for you.
 
 
   """
@@ -461,7 +461,7 @@ Access Develocity via the browser at: ${GREEN}http://${hostname}${NOFORMAT}
       while :; do
         case "${1-}" in
           -h | --help) usage ;;
-          -v | --version) echo "$Script_Version"; exit 0 ;;
+          -v | --version) echo "$SCRIPT_VERSION"; exit 0 ;;
           --no-color) NO_COLOR=1 ;;
           -l | --license)
             if [[ -f "${2-}" ]]; then
