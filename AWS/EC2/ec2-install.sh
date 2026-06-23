@@ -231,7 +231,7 @@ installHelm(){
       return
   fi
 
-  local url="https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3"
+  local url="https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-4"
   checkUrl "${url}"
 
   logInfo "Installing Helm..."
