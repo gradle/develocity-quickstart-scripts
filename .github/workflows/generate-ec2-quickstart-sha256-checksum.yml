@@ -3,32 +3,42 @@ name: Generate SHA256 Checksum
 on:
   pull_request:
     paths:
-      - 'AWS/EC2/ec2-install.sh'  # Trigger only when the install.sh file in the AWS/EC2 directory is changed
+      - 'AWS/EC2'
     types:
       - opened
       - synchronize
       - reopened
+
+# Needed so the workflow can push the regenerated checksum back onto the PR branch.
+permissions:
+  contents: write
 
 jobs:
   generate-checksum:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v7
+      - name: Checkout the PR branch
+        uses: actions/checkout@v7
+        with:
+          # Check out the actual PR branch (not the detached merge ref) so we can commit back to it.
+          ref: ${{ github.head_ref }}
 
-    - name: Generate SHA256 checksum for install.sh in AWS/EC2 directory
-      run: |
-        # Generate SHA256 checksum for the install.sh script located in AWS/EC2
-        sha256sum AWS/EC2/ec2-install.sh > AWS/EC2/ec2-install.sh.sha256
+      - name: Generate SHA256 checksum for ec2-install.sh
+        # Run inside AWS/EC2 so the checksum file records the bare "ec2-install.sh" name.
+        # The quickstart guide downloads the script to the working directory and runs
+        # `sha256sum -c ec2-install.sh.sha256`, which expects the bare filename, not a path.
+        working-directory: AWS/EC2
+        run: sha256sum ec2-install.sh > ec2-install.sh.sha256
 
-    - name: Commit SHA256 file to AWS/EC2 directory
-      run: |
-        # Set up Git config
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
-
-        # Add the generated checksum file in the AWS/EC2 directory
-        git add AWS/EC2/ec2-install.sh.sha256
-        git commit -m "Add SHA256 checksum for ec2-install.sh in AWS/EC2 directory"
-        git push
+      - name: Commit the checksum if it changed
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet -- AWS/EC2/ec2-install.sh.sha256; then
+            echo "Checksum already up to date; nothing to commit."
+          else
+            git add AWS/EC2/ec2-install.sh.sha256
+            git commit -m "chore: update ec2-install.sh.sha256 [skip ci]"
+            git push
+          fi
