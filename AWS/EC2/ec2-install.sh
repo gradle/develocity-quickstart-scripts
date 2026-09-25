@@ -195,9 +195,23 @@ checkK3sStatus() {
 
 # --- Installation functions ---
 # Check Develocity connectivity
+# The Pods can report ready while the application is still starting, so a single request
+# fails with a 503. Poll /ping until it reports UP.
 checkDevelocity(){
     logInfo "Checking Develocity connectivity"
-    curl -sw \\n --fail-with-body --show-error http://"${hostname}"/ping || exitError "Develocity is not reachable"
+    local retries=0
+    local max_retries=40    # 40 x 15 seconds = 10 minutes
+    local sleep_interval=15 # seconds
+    until curl -s --fail http://"${hostname}"/ping 2>/dev/null | grep -q '"UP"'; do
+      retries=$((retries + 1))
+      if (( retries >= max_retries )); then
+        curl -sw \\n --fail-with-body --show-error http://"${hostname}"/ping || true
+        exitError "Develocity is not reachable"
+      fi
+      logInfo "Develocity is still starting, retrying in ${sleep_interval} seconds... (${retries}/${max_retries})"
+      sleep "$sleep_interval"
+    done
+    curl -sw \\n --fail-with-body --show-error http://"${hostname}"/ping
 }
 
 # Install K3s
@@ -222,6 +236,26 @@ configureK3s(){
     mkdir -p "${HOME}/.kube"
     # Create a symbolic link to the KUBECONFIG file
     ln -sf /etc/rancher/k3s/k3s.yaml "${HOME}/.kube/config"
+}
+
+# K3s creates the Traefik CRDs with a Helm job shortly after the service starts. The
+# Develocity chart uses the Traefik Middleware kind, so installing it before the CRDs
+# exist fails with "no matches for kind Middleware ... ensure CRDs are installed first".
+waitForTraefikCrds(){
+  logInfo "Waiting for K3s to install the Traefik CRDs..."
+  export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+  local retries=0
+  local max_retries=60   # 60 x 5 seconds = 5 minutes
+  local sleep_interval=5 # seconds
+  until kubectl get crd middlewares.traefik.io >/dev/null 2>&1; do
+    retries=$((retries + 1))
+    if (( retries >= max_retries )); then
+      exitError "K3s did not install the Traefik CRDs within 5 minutes"
+    fi
+    sleep "$sleep_interval"
+  done
+  kubectl wait --for=condition=established --timeout=60s crd/middlewares.traefik.io >/dev/null \
+    || exitError "The Traefik CRDs were not established"
 }
 
 # Install Helm
@@ -510,6 +544,9 @@ checkK3sStatus
 
 # Configure k3s
 configureK3s
+
+# Wait for the Traefik CRDs the Develocity chart depends on
+waitForTraefikCrds
 
 # Install Helm
 installHelm
